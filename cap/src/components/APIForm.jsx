@@ -24,7 +24,25 @@ const APIForm = ({inputs, handleChange, onSubmit}) => {
                 }
             }
         }
+        /**call makeQuery() after we've properly checked our inputs variable */
+        makeQuery();
     }
+
+    /**helper function to take input values & assemble them into the right query string format that the API call needs */
+    const makeQuery = () => {
+        {/**these parameters don't need to be chosen by user, but still need to be included */}
+        let wait_until = "network_idle";
+        let response_type = "json";
+        let fail_on_status = "400%2C404%2C500-511";
+        let url_starter = "https://";
+        let fullURL = url_starter + inputs.url;
+
+        /**assemble query */
+        let query = `https://api.apiflash.com/v1/urltoimage?access_key=${ACCESS_KEY}&url=${fullURL}&format=${inputs.format}&width=${inputs. width}&height=${inputs.height}&no_cookie_banners=${inputs.no_cookie_banners}&no_ads=${inputs.no_ads}&wait_until=${wait_until}&response_type=${response_type}&fail_on_status=${fail_on_status}`;
+    }
+
+    
+
 
     const inputsInfo = [
         "Input a link to any website you would like to take a screenshot of. Do not include https or any protocol in the URL",
