@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 /**component for handling the form */
 /**passing inputs, handleChange, onSubmit as props to APIForm so we can edit our inputs state variable properly  */
@@ -39,7 +39,32 @@ const APIForm = ({inputs, handleChange, onSubmit}) => {
 
         /**assemble query */
         let query = `https://api.apiflash.com/v1/urltoimage?access_key=${ACCESS_KEY}&url=${fullURL}&format=${inputs.format}&width=${inputs. width}&height=${inputs.height}&no_cookie_banners=${inputs.no_cookie_banners}&no_ads=${inputs.no_ads}&wait_until=${wait_until}&response_type=${response_type}&fail_on_status=${fail_on_status}`;
+
+        /**make API call with callAPI() */
+        callAPI(query).catch(console.error);
     }
+
+
+    /**async func to make API call with newly created query */
+    const callAPI = async (query) => {
+        /**make fetch call with await */
+        const response = await fetch(query);
+        /**save response as a simple json */
+        const json = await response.json();
+        /**to see in console what the API returns */
+        console.log(json);
+
+        /**check if no url from API call and give user more descriptive error message*/
+        if(json.url == null){
+            alert("OOps! Something went wrong with that query, let's try again!")
+        } else{
+            setCurrentImage(json.url);
+        }
+    }
+
+
+    /**state variable to hold & display current screenshot */
+    const [currentImage, setCurrentImage] = useState(null);
 
     
 
