@@ -115,6 +115,13 @@ const APIForm = ({inputs, handleChange, onSubmit}) => {
                         </li>
                     ))}
             </form>
+            
+            {/**conditional rendering to allow users see a few things from the web page to show them their resulting screenshot and how their query is progressing based on their inputs in case they are interested. */}
+            {currentImage ? (//show current image if it exists otherwise show nothing
+                <img className="screenshot" src={currentImage} alt="Screenshot returned"/>
+            ) : (
+                <div> </div>
+            )}
             {/**add a button for submitting */}
             <button type="submit" className="button" onClick={onSubmit}>Take that Pic! </button>
             
