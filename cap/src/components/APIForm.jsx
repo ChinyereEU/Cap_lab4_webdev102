@@ -45,6 +45,19 @@ const APIForm = ({inputs, handleChange, onSubmit}) => {
     }
 
 
+    /**helper function to set the current 'inputs' values to "" so that the form is cleared after API call */
+    const reset = () => {
+        /**set current 'inputs' values to "" */
+        setInputs({
+            url: "",
+            format: "",
+            no_ads: "",
+            no_cookie_banners: "",
+            width: "",
+            height: "",
+        });
+    }
+
     /**async func to make API call with newly created query */
     const callAPI = async (query) => {
         /**make fetch call with await */
@@ -59,6 +72,7 @@ const APIForm = ({inputs, handleChange, onSubmit}) => {
             alert("OOps! Something went wrong with that query, let's try again!")
         } else{
             setCurrentImage(json.url);
+            reset();//clear form after API call 
         }
     }
 
