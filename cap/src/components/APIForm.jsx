@@ -122,6 +122,20 @@ const APIForm = ({inputs, handleChange, onSubmit}) => {
             ) : (
                 <div> </div>
             )}
+            {/**container with the mock query string that users are assembling with their inputs in the form  */}
+            <div className="container">
+                <h3>Current Query Status: </h3>
+                <p>https://api.apiflash.com/v1/urltoimage?access_key=ACCESS_KEY
+                    <br></br>
+                    &url={inputs.url} <br></br>
+                    &format={inputs.format} <br></br>
+                    &width={inputs.width} <br></br>
+                    &height={inputs.height} <br></br>
+                    &no_cookie_banners={inputs.no_cookie_banners} <br></br>
+                    &no_ads={inputs.no_ads} <br></br>
+                </p>
+            </div>
+            <br></br>
             {/**add a button for submitting */}
             <button type="submit" className="button" onClick={onSubmit}>Take that Pic! </button>
             
